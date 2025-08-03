@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Die Stimme des Moments</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header class="site-header">
-  <div class="header-left">
-    <a href="index.html">
-      <img src="logoT.png" alt="Logo" class="logo" />
-    </a>
-    <span class="site-title">Die Stimme des Moments</span>
-  </div>
-</header>
 
-
+<div id="header-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+  </script>
   <main>
     <p><strong>Ich bin die Stimme des Moments.</strong><br>
     Und ich freue mich riesig, hier zu sein!</p>

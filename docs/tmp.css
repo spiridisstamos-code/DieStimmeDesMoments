@@ -1,0 +1,289 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+  background: #f9f9f9;
+  color: #333;
+}
+
+header, footer {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+a.button {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+a.button:hover {
+  background-color: #0056b3;
+}
+
+.calendar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.calendar-nav button {
+  padding: 5px 10px;
+  margin: 0 10px;
+  cursor: pointer;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+.calendar-nav button:hover {
+  background: #0056b3;
+}
+
+#slots {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.slot-day {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.slot-day h3 {
+  margin-top: 0;
+}
+
+.slot-day button {
+  margin: 5px;
+  padding: 8px 12px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.slot-day button:hover {
+  background: #218838;
+}
+
+footer {
+  font-size: 0.9em;
+  margin-top: 3rem;
+  color: #777;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #555;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+    .site-header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.logo {
+  height: 90px;
+  width: auto;
+}
+
+.site-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+    body {
+      background: linear-gradient(to bottom, #fdfdfd, #f2f2f2);
+      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      color: #2c3e50;
+    }
+
+    main {
+      animation: fadeIn 1s ease-in;
+    }
+
+    p {
+      margin: 1.2rem 0;
+      font-size: 1.1rem;
+    }
+
+    strong {
+      color: #007bff;
+    }
+
+    em {
+      font-style: italic;
+      color: #666;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: background 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    footer a {
+      color: #555;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+input[type="date"] {
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.slot-day button {
+  width: 200px; /* Feste Breite für alle Buttons */
+  display: inline-block;
+  margin: 4px;
+  padding: 10px 12px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace; /* Für gleichmäßige Zeitangabe */
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.slot-day button:hover {
+  background: #0056b3;
+}
+.slot-day {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+    font-size: 1.1rem;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  main p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .calendar-nav button {
+    padding: 10px 15px;
+    font-size: 1rem;
+  }
+
+  .slot-day button {
+    font-size: 1rem;
+    padding: 12px;
+    width: 100%; /* macht alle gleich breit */
+    box-sizing: border-box;
+  }
+
+  .slot-day h3 {
+    font-size: 1.2rem;
+  }
+
+  footer {
+    font-size: 0.95rem;
+  }
+
+  a.button {
+    display: block;
+    font-size: 1.2rem;
+    padding: 12px 16px;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  header img.logo {
+    width: 160px;
+  }
+}
