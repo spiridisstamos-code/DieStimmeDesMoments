@@ -14,10 +14,9 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'docs', 'index.html'));
-});
 
+// 🔧 Statische Dateien aus 'docs/' servieren
+app.use(express.static(path.join(__dirname, 'docs')));
 
 const require = createRequire(import.meta.url);
 
@@ -40,7 +39,7 @@ try {
 
 // 🔑 Google Auth
 const SCOPES = ['https://www.googleapis.com/auth/calendar'];
-const calendarId = 'spiridisstamos@gmail.com'; // oder deine Kalender-ID
+const calendarId = 'spiridisstamos@gmail.com'; // deine Kalender-ID
 
 const auth = new google.auth.GoogleAuth({
   credentials: serviceAccount,
@@ -93,6 +92,11 @@ app.post('/api/book', async (req, res) => {
     console.error('❌ Fehler bei Terminbuchung:', error.message);
     res.status(500).json({ error: 'Server error' });
   }
+});
+
+// 🌐 Fallback: index.html für alle nicht erkannten Routen (z. B. direkte URL-Aufrufe im Browser)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'docs', 'index.html'));
 });
 
 app.listen(PORT, () => {
