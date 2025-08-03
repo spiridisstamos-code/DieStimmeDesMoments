@@ -16,7 +16,7 @@
     // ✅ Dynamische API-URL je nach Umgebung
     const baseUrl = location.hostname === 'localhost'
       ? 'http://localhost:3000'
-      : 'https://terminplanner.onrender.com'; // 🔁 Hier DEIN Render-Link einsetzen!
+      : 'https://diestimmedesmoments.onrender.com'; // 🔁 Hier DEIN Render-Link einsetzen!
 
     async function loadSlots() {
       const res = await fetch(`${baseUrl}/api/slots`);
