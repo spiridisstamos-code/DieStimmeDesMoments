@@ -66,7 +66,7 @@ async function loadSlots() {
   }
 
   const container = document.getElementById('slots');
-  container.innerHTML = '';
+  container.innerHTML = '<em>Lade freie Termine...</em>';
 
   const days = Object.keys(slotsByDay);
   if (days.length === 0) {
