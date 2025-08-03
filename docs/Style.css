@@ -1,71 +1,73 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
   padding: 2rem;
-  background: #f4f4f4;
+  max-width: 800px;
+  margin: auto;
+  background: #f9f9f9;
   color: #333;
 }
 
-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+header, footer {
+  text-align: center;
   margin-bottom: 2rem;
 }
 
-.logo {
-  height: 50px;
-}
-
-main {
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-#slotNavigation {
+.calendar-nav {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
 }
 
-#slotNavigation button {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  padding: 0 1rem;
+.calendar-nav button {
+  padding: 5px 10px;
+  margin: 0 10px;
   cursor: pointer;
 }
 
-#slotNavigation span {
-  font-size: 1.2rem;
-  font-weight: bold;
+#slots {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-#slots h3 {
-  margin-top: 1rem;
-  color: #555;
+.slot-day {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
 }
 
-#slots button {
-  padding: 10px;
+.slot-day h3 {
+  margin-top: 0;
+}
+
+.slot-day button {
   margin: 5px;
-  cursor: pointer;
-  background-color: #007BFF;
-  color: white;
+  padding: 8px 12px;
+  background: #007bff;
+  color: #fff;
   border: none;
   border-radius: 4px;
+  cursor: pointer;
 }
 
-#slots button:hover {
-  background-color: #0056b3;
+.slot-day button:hover {
+  background: #0056b3;
 }
 
 footer {
-  margin-top: 2rem;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 0.9em;
+  margin-top: 3rem;
+  color: #777;
+}
+
+footer .social-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #555;
+}
+
+footer .social-links a:hover {
+  text-decoration: underline;
 }

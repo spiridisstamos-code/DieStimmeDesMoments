@@ -2,19 +2,29 @@ const baseUrl = location.hostname === 'localhost'
   ? 'http://localhost:3000'
   : 'https://diestimmedesmoments.onrender.com';
 
-let currentMonthOffset = 0;
+let currentMonth = new Date();
 
 document.getElementById('prevMonth').onclick = () => {
-  currentMonthOffset--;
+  currentMonth.setMonth(currentMonth.getMonth() - 1);
   loadSlots();
 };
 
 document.getElementById('nextMonth').onclick = () => {
-  currentMonthOffset++;
+  currentMonth.setMonth(currentMonth.getMonth() + 1);
   loadSlots();
 };
 
+function updateMonthLabel() {
+  const label = currentMonth.toLocaleDateString('de-DE', {
+    year: 'numeric',
+    month: 'long'
+  });
+  document.getElementById('monthLabel').textContent = label;
+}
+
 async function loadSlots() {
+  updateMonthLabel();
+
   const res = await fetch(`${baseUrl}/api/slots`);
   const data = await res.json();
 
@@ -23,24 +33,21 @@ async function loadSlots() {
     end: new Date(b.end)
   }));
 
+  const start = new Date(currentMonth);
+  start.setDate(1);
+  start.setHours(0, 0, 0, 0);
+
+  const end = new Date(start);
+  end.setMonth(start.getMonth() + 1);
+
+  const slotsByDay = {};
+
+  const current = new Date(start);
   const now = new Date();
-  const targetMonth = new Date();
-  targetMonth.setMonth(now.getMonth() + currentMonthOffset);
-  targetMonth.setDate(1);
 
-  const endOfMonth = new Date(targetMonth);
-  endOfMonth.setMonth(targetMonth.getMonth() + 1);
-  endOfMonth.setDate(0);
-
-  document.getElementById('monthLabel').textContent = targetMonth.toLocaleString('de-DE', { month: 'long', year: 'numeric' });
-
-  const slots = [];
-  const current = new Date(targetMonth);
-  current.setHours(0, 0, 0, 0);
-
-  while (current <= endOfMonth) {
+  while (current < end) {
     const day = current.getDay();
-    if (day > 0 && day < 6) {
+    if (day > 0 && day < 6) { // Mo–Fr
       for (let hour = 8; hour < 18; hour++) {
         const slotStart = new Date(current);
         slotStart.setHours(hour, 0, 0, 0);
@@ -49,7 +56,9 @@ async function loadSlots() {
 
         const isBusy = busy.some(b => slotStart < b.end && slotEnd > b.start);
         if (!isBusy && slotStart > now) {
-          slots.push({ start: slotStart, end: slotEnd });
+          const key = slotStart.toLocaleDateString('de-DE');
+          if (!slotsByDay[key]) slotsByDay[key] = [];
+          slotsByDay[key].push({ start: slotStart, end: slotEnd });
         }
       }
     }
@@ -59,34 +68,26 @@ async function loadSlots() {
   const container = document.getElementById('slots');
   container.innerHTML = '';
 
-  if (slots.length === 0) {
+  const days = Object.keys(slotsByDay);
+  if (days.length === 0) {
     container.textContent = 'Keine freien Termine verfügbar.';
     return;
   }
 
-  const grouped = {};
-  slots.forEach(slot => {
-    const dateKey = slot.start.toLocaleDateString('de-DE');
-    if (!grouped[dateKey]) grouped[dateKey] = [];
-    grouped[dateKey].push(slot);
-  });
+  days.forEach(dateStr => {
+    const section = document.createElement('div');
+    section.className = 'slot-day';
+    const title = document.createElement('h3');
+    title.textContent = dateStr;
+    section.appendChild(title);
 
-  for (const date in grouped) {
-    const group = document.createElement('div');
-    const headline = document.createElement('h3');
-    headline.textContent = date;
-    group.appendChild(headline);
-
-    grouped[date].forEach(slot => {
+    slotsByDay[dateStr].forEach(slot => {
       const btn = document.createElement('button');
-      btn.textContent = `${slot.start.getHours()}:00 – ${slot.end.getHours()}:00`;
+      btn.textContent = `${slot.start.getHours()}:00 – ${slot.end.getHours()}:00 Uhr`;
       btn.onclick = async () => {
         const name = prompt('Dein Name:');
         const email = prompt('Deine E-Mail:');
-        if (!name || !email) {
-          alert('Name und E-Mail sind erforderlich!');
-          return;
-        }
+        if (!name || !email) return alert('Name und E-Mail sind erforderlich!');
         try {
           const res = await fetch(`${baseUrl}/api/book`, {
             method: 'POST',
@@ -105,11 +106,11 @@ async function loadSlots() {
           alert('Fehler beim Buchen: ' + e.message);
         }
       };
-      group.appendChild(btn);
+      section.appendChild(btn);
     });
 
-    container.appendChild(group);
-  }
+    container.appendChild(section);
+  });
 }
 
 loadSlots();
