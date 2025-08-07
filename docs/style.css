@@ -1,42 +1,58 @@
-body {
-  font-family: Arial, sans-serif;
-  padding: 2rem;
-  max-width: 800px;
-  margin: auto;
-  background: #f9f9f9;
-  color: #333;
+/* === Custom Font === */
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('KGWildways.ttf') format('truetype'),
+       url('KGWildways.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-header, footer {
+/* === Basislayout === */
+body {
+  font-family:  Arial, sans-serif;
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+  background: linear-gradient(to bottom, #fdfdfd, #f2f2f2);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* === Header & Footer === */
+header,
+footer {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+header h1 {
+  font-size: 2rem; /* Desktop: groß */
+  font-weight: 800;
+  color: #2c3e50;
+  margin-bottom: 1.2rem;
 }
 
-p {
-  font-size: 1.1rem;
-  line-height: 1.6;
+footer {
+  font-size: 0.9em;
+  margin-top: 4rem;
+  color: #777;
 }
 
-a.button {
-  display: inline-block;
-  padding: 12px 20px;
-  background-color: #007bff;
-  color: #fff;
+footer p {
+  margin: 0;
+}
+
+footer a {
+  margin: 0 10px;
   text-decoration: none;
-  border-radius: 6px;
-  margin-top: 1rem;
-  font-weight: bold;
+  color: #555;
 }
 
-a.button:hover {
-  background-color: #0056b3;
+footer a:hover {
+  text-decoration: underline;
 }
 
+/* === Navigation === */
 .calendar-nav {
   display: flex;
   justify-content: center;
@@ -58,115 +74,7 @@ a.button:hover {
   background: #0056b3;
 }
 
-#slots {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.slot-day {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-.slot-day h3 {
-  margin-top: 0;
-}
-
-.slot-day button {
-  margin: 5px;
-  padding: 8px 12px;
-  background: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.slot-day button:hover {
-  background: #218838;
-}
-
-footer {
-  font-size: 0.9em;
-  margin-top: 3rem;
-  color: #777;
-}
-
-footer p {
-  margin: 0;
-}
-
-footer a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #555;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-.site-header {
-  display: flex;
-  align-items: center;
-  padding: 1.5rem 2rem;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 0.0rem;
-}
-
-.logo {
-  height: 120px;
-  width: auto;
-}
-
-.site-title {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #333;
-}
-/* Für Bildschirme mit max. 600px Breite (z. B. Handy) */
-@media (max-width: 600px) {
-  .logo {
-    height: 140px; /* kleiner für Handy */
-  }
-
-  .site-title {
-    font-size: 0.9rem; /* optional auch Titel kleiner */
-  }
-
-body {
-  background: linear-gradient(to bottom, #fdfdfd, #f2f2f2);
-  color: #333;
-  font-family: 'Segoe UI', sans-serif;
-  line-height: 1.6;
-  padding: 2rem;
-  max-width: 900px;
-  margin: auto;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-header h1 {
-  font-size: 2.2rem;
-  color: #2c3e50;
-}
-
-main {
-  animation: fadeIn 1s ease-in;
-}
-
+/* === Inhalt === */
 p {
   margin: 1.2rem 0;
   font-size: 1.1rem;
@@ -181,6 +89,7 @@ em {
   color: #666;
 }
 
+a.button,
 .button {
   display: inline-block;
   margin-top: 2rem;
@@ -190,51 +99,45 @@ em {
   border-radius: 6px;
   text-decoration: none;
   font-size: 1.1rem;
+  font-weight: bold;
   transition: background 0.3s ease;
 }
 
+a.button:hover,
 .button:hover {
   background-color: #0056b3;
 }
 
-footer {
-  text-align: center;
-  margin-top: 4rem;
-  font-size: 0.9rem;
-  color: #777;
+/* === Slot-Design === */
+#slots {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-footer a {
-  color: #555;
-  text-decoration: none;
-  margin: 0 8px;
+.slot-day {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-footer a:hover {
-  text-decoration: underline;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-input[type="date"] {
-  font-size: 1rem;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
+.slot-day h3 {
+  margin-top: 0;
 }
 
 .slot-day button {
-  width: 200px; /* Feste Breite für alle Buttons */
-  display: inline-block;
+  width: 200px;
   margin: 4px;
   padding: 10px 12px;
   background: #007bff;
   color: #fff;
   border: none;
   border-radius: 6px;
-  font-family: 'Courier New', monospace; /* Für gleichmäßige Zeitangabe */
+  font-family: 'Courier New', monospace;
   text-align: center;
   cursor: pointer;
   transition: background 0.3s ease;
@@ -243,9 +146,67 @@ input[type="date"] {
 .slot-day button:hover {
   background: #0056b3;
 }
-.slot-day {
+
+/* === Header-Bereich mit Logo === */
+.site-header {
+  font-family: 'MyCustomFont', sans-serif;
+  font-size: 2rem;   /* größer machen */
+  font-weight: bold; /* oder bold, je nach Wunsch */
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  ;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.0rem;
+}
+
+.logo {
+  height: 120px;
+  width: auto;
+}
+
+.site-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-left: 2rem;
+}
+
+/* === Eingabefelder === */
+input[type="date"] {
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* === Animation === */
+main {
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === Responsive: Handy-Optimierung === */
+@media (max-width: 600px) {
+  .logo {
+    height: 140px;
+  }
+
+  .site-title {
+    font-size: 0.9rem;
+  }
+
+  header h1 {
+    font-size: 2.2rem; /* Mobil: kleiner */
+    font-weight: 700;
+  }
+}
